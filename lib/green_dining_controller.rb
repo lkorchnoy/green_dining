@@ -30,7 +30,25 @@ class GreenDining::GreenDiningController
         end
       end
     end
-    
+     
+    def get_food
+      puts "Would you like to get food?"
+      event
+    end
+
+    def give_food
+      puts "Would you like to donate food?"
+      event
+    end
+
+    def volunteer
+      puts "If you would like to volunteer email me at green_dining@yahoo.com"
+    end
+     
+    def advocate
+      puts "If you would like to advocate on social media email me at green_dining@yahoo.com"
+    end
+
 
       
 end

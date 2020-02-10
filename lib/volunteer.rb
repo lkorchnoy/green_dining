@@ -30,7 +30,7 @@
     end
 
     def food(zipcode)
-        food.collect {|f| f.zipcode == volunteer}.uniq
+        food.collect {|f| f.zipcode}.uniq
     end
 
     def save

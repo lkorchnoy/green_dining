@@ -24,8 +24,8 @@ def self.create
     create.new.save
 end
 
-def person_get_food(zipcode)
-    @zip_code.each {|z| z == food}
+def person_get_food(zipcode, volunteer)
+    @zip_code.each {|z| z.volunteer = food}
     puts "At #{z} we feed people not landfils"
 end
 
@@ -35,11 +35,11 @@ def add_person_by_zip_code(zipcode)
 end
 
 def food
-    food.collect {|f| f == person}
+    food.collect {|f| f.person}
 end
 
 def person_give_food(zipcode, volunteer)
-    @zip_code.each {|z| z == volunteer.food}
+    @zip_code.each {|z| z.volunteer}
     puts "Thank you for preserving the environment at #{z} by not wasting food"
 end
 
