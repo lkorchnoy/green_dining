@@ -28,8 +28,8 @@ end
 
 def person
     self.zip_code.collect {|z| z.person == food}.uniq
-    person_get_food
-    person_give_food
+    get_food
+    give_food
 end
 
 def save 
