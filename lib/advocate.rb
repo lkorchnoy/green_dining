@@ -6,6 +6,7 @@ class Advocate
     def initialize(name)
         @name = name
         @social_media = social_media
+        @green_dining = []
     end
    
     def self.all

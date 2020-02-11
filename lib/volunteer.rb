@@ -6,6 +6,7 @@
 
      def initialize(name)
         @name = name
+        @green_dining = []
         @zip_code << zip_code
     end
    

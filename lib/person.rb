@@ -10,6 +10,7 @@ def initialize(name)
     @zip_code = []
     @volunteer = []
     @advocate = []
+    @green_dining = []
 end
 
 def self.all

@@ -21,6 +21,8 @@ class GreenDining::GreenDiningController
         case input
         when "get food"
           get_food
+        when "green_dining"
+          green_dining
         when "give food"
           give_food
         when "volunteer"

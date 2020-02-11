@@ -8,6 +8,7 @@ attr_accessor :name, :zip_code
 def initialize(name)
     @name = name
     @zip_code = []
+    @green_dining =[]
 end
 
 def self.all
