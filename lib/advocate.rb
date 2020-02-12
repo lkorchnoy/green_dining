@@ -6,7 +6,6 @@ class Advocate
     def initialize(name)
         @name = name
         @social_media = social_media
-        @green_dining = []
     end
    
     def self.all
@@ -23,7 +22,7 @@ class Advocate
 
     def person 
         person.each {|p| p.advocate == social_media}
-        puts "You and you and #{p} together we can end world hunger"
+        puts "At #{p} together we can end world hunger"
     end
 
     def save

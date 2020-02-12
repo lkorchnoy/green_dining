@@ -1,4 +1,4 @@
-       class Volunteer
+    class Volunteer
 
      attr_accessor :name, :zip_code
 
@@ -6,7 +6,6 @@
 
      def initialize(name)
         @name = name
-        @green_dining = []
         @zip_code << zip_code
     end
    
@@ -25,16 +24,12 @@
     end
 
     def person(volunteer)
-        Person.all.each {|p| p.volunteer == food}
+        Person.all.each {|p| p.volunteer}
         person_get_food
         person_give_food
     end
 
-    def food(zipcode)
-        food.collect {|f| f.zipcode}.uniq
-    end
-
-    def save
+   def save
     self.class.all << self
     end
 

@@ -8,23 +8,19 @@ class GreenDining::GreenDining
         @volunteer = volunteer
         @zip_code = zip_code
         @food = food
-        @green_dining = {}
         @@all << self
     end
 
     def event
-        #Green_dining = Green_dining.new(:person, :volunteer, :food, :zip_code)
-        
-       # @green_dining << Green_dining.new("person", "volunteer", "food", "zip_code")
+        person_get_food
+        person_give_food
+        events = []
+        a = "input"
+          case a 
+        when /^[a-z]*$/ === "input"
+        events << Event.new("person", "volunteer", "zipcode")
+        events.sort_by {|event| [event.person, event.volunteer, event.zipcode]}
+        puts "#{event.person}" - "#{event.volunteer}" - "#{event.zipcode}"
+        end
 
-       #@green_dining.sort_by {|dining| [dining.person, dining.volunteer, dining.food, dining.zip_code]}
-        h = Green_dining.new(zip_code)
-        h = {:person => ["volunteer", "zip_code", "food"]}
-          p  h.values_at("person") if person == person.zip_code
-            
-    end
-
-
-
-    
 end
