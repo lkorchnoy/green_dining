@@ -21,7 +21,7 @@ run 'git push origin master' to actually send the code
 
 
   #page = Nokogiri::HTML(open(green_dining_info[:green_dining_link]))
- end
+
 
 #  def self.olio_scraper
 #     doc = Nokogiri::HTML(open("https://olioex.com/"))
@@ -37,9 +37,11 @@ run 'git push origin master' to actually send the code
 
 #     def self.operation_lunch_box_scraper
 #         doc = Nokogiri::HTML(open("http://www.operationlunchbox.org"))
+
+#green_dining_event_method
+# puts "#{green_dining.person}" - "#{green_dining.volunteer}" - "pick up #{green_dining.food}" - "at
+        # #{green_dining.zipcode}" - "#{advocate}"
         
     
-# end
 
-end    
 

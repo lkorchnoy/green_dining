@@ -1,55 +1,69 @@
 class GreenDining::GreenDiningController
-
-    def initialize
-      Green_Dining.new
-    end
-
-       def call 
+       
+  def call 
+    binding.pry
          input = ""
          while input != "exit"
         puts "Welcome to the Green Dining App!"
 
-        puts "To get food, enter 'get food'."
-        puts "To give food, enter 'give food'."
+        puts "To find community dining, enter 'green_dining_event'." 
+        puts "To find share-a-meal, groceries by location, enter 'location'."
+        puts "To donate food, enter 'donate_food'."
         puts "To volunteer, enter 'volunteer'."
-        puts "To advocate, enter 'advocate'."
+        puts "To advocate, enter 'advocate'." 
         puts "To quite, type 'exit'."
         puts "What would you like to do?"
 
         input = gets.strip
 
         case input
-        when "get food"
-          get_food
-        when "green_dining"
-          green_dining
-        when "give food"
-          give_food
+        when "green_dining_event"
+          green_dining_event
+        when "location"
+          location
+        when "donate_food" 
+          donate_food
         when "volunteer"
           volunteer
         when "advocate"
           advocate
+        when "quite"
+          exit
         end
       end
     end
      
-    def get_food
-      puts "Would you like to get food?"
-      event
+    
+
+    
+
+    def green_dining_event
+      green_dining_event
     end
 
-    def give_food
-      puts "Would you like to donate food?"
-      event
+    def location
+      food.find_by_symbol(zipcode)
+    end
+
+    def donate_food
+      donate_food
+      puts "Thank you for preserving the environment by not wasting food"
     end
 
     def volunteer
-      puts "If you would like to volunteer email me at green_dining@yahoo.com"
+      volunteer
+      puts "Thank you for your interest, food rescue hero. Email me at green_dining@yahoo.com"
     end
      
     def advocate
-      puts "If you would like to advocate on social media email me at green_dining@yahoo.com"
+      advocate
+      puts "Today, hunger should be a thing of a past. To advocate on social media email green_dining@yahoo.com"
     end
+
+    def exit
+      puts "Goodbye!"  
+      exit
+  end 
 
 
       
