@@ -39,8 +39,7 @@ run 'git push origin master' to actually send the code
 #         doc = Nokogiri::HTML(open("http://www.operationlunchbox.org"))
 
 #green_dining_event_method
-# puts "#{green_dining.person}" - "#{green_dining.volunteer}" - "pick up #{green_dining.food}" - "at
-        # #{green_dining.zipcode}" - "#{advocate}"
+
         
     
 

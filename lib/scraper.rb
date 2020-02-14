@@ -17,30 +17,20 @@ require 'pry'
         green_dining = []
         
     green_dining_info = {
-    :announcements => green_dining.css("h1.announcements").text.strip,
-    :todays_menu => green_dining.css("strong").text.strip,
-    :volunteer => green_dining.css("h3.et_pb_toggle_title").text.strip,
-    :locations => green_dining.css("span.color").text.strip}
-   # :green_dining_link => "https://jbjsoulkitchen.org#{g
+    :name => green_dining.css("div.logo_container").text.strip,
+    :location_red_bank => green_dining.css("div#locations").text.strip,
+    :location_toms_river => green_dining.css("div#locations").text.strip,
+    :volunteer => green_dining.css("div.et_pb_row.et_pb_row_23").text.strip,
+    :menu_red_bank_url => Nokogiri::HTML(open("https://jbjsoulkitchen.org/red-bank-menu/")),
+    :menu_red_bank => green_dining.css("div.entry-content").text.strip,
+    :menu_toms_river_url => Nokogiri::HTML(open("https://jbjsoulkitchen.org/toms-river-menu/")),
+    :menu_toms_river => green_dining.css("div.entry-content")
+   :green_dining_link => "https://jbjsoulkitchen.org }
     green_dining << green_dining_info
     end
     green_dining 
 end
 
-       def self.olio_scraper
-        doc = Nokogiri::HTML(open("https://olioex.com/"))
-        olio.css("div.content").collect do |green_dining|
-            @green_dining << green_dining
-        green_dining_info = {
-        :green_dining_give_food => green_dining.css("div.wpb_wrapper").text.strip,
-        :green_dining_get_food =>green_dining.css("h3").text.strip,
-         :green_dining_volunteer = > green.dining.css("a.href=https://volunteers.olioex.com/").text.strip,
-         :green_dining_app => green_dining.css("a.href=https://apps.apple.com/gb/app/olio-food-sharing-revolution/id1008237086").text.strip
-            }
-        end
-    
-        def self.operation_lunch_box_scraper
-             doc = Nokogiri::HTML(open("http://www.operationlunchbox.org"))
-        end
+       
 
     end
