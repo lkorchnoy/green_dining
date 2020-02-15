@@ -11,7 +11,7 @@ require 'pry'
  def self.jbj_soul_kitchen_scraper
     doc = Nokogiri::HTML(open("https://jbjsoulkitchen.org"))
    
-    binding.pry
+    
     jbj_soul_kitchen.css("h2.et_pb_slide_title").collect do |green_dining|
         #green_dining = Green_dining.new(self)
         green_dining = []
@@ -24,9 +24,11 @@ require 'pry'
     :menu_red_bank_url => Nokogiri::HTML(open("https://jbjsoulkitchen.org/red-bank-menu/")),
     :menu_red_bank => green_dining.css("div.entry-content").text.strip,
     :menu_toms_river_url => Nokogiri::HTML(open("https://jbjsoulkitchen.org/toms-river-menu/")),
-    :menu_toms_river => green_dining.css("div.entry-content")
-   :green_dining_link => "https://jbjsoulkitchen.org }
+    :menu_toms_river => green_dining.css("div.entry-content"),
+   :green_dining_link => "https://jbjsoulkitchen.org"}
+   
     green_dining << green_dining_info
+    binding.pry
     end
     green_dining 
 end

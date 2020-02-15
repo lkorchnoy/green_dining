@@ -1,91 +1,97 @@
 class GreenDining::GreenDiningController
        
-  def call 
-    binding.pry
+        def call
+
          input = ""
          while input != "exit"
-        puts "Welcome to the Green Dining App!"
+         puts "Welcome to the Green Dining App!"
 
-        puts "To find green dining by name, enter 'name'."
-        puts "To find green dining locations, enter 'find'."
-        puts "To find green dining by zip code, enter 'locations'." 
-        puts "To find Red Bank location, enter '1'."
-        puts "To find Toms River location, enter '2'."
-        puts "To find out the menu, enter 'menu'."
-        puts "To view Red Bank's menu, enter 'red bank menu'."
-        puts "To view Toms River's menu, enter 'toms river menu'."
-        puts ",mbbbm"
-        puts "To volunteer, enter 'volunteer'."
-        #puts "To advocate, enter 'advocate'." 
-        puts "To quite, type 'exit'."
+        puts "To find green dining by name, please enter 'name'."
+        puts "To find green dining locations, please enter 'locations'."
+        puts "To find out the menu, please enter 'menu'."
+        puts "To discover green news and opportunities, please enter 'next'."
+        puts "To volunteer, please enter 'volunteer'."
+        puts "To exit, please type 'exit'."
         puts "What would you like to do?"
 
         input = gets.strip
+        
 
         case input
-        when "name "
+        when "name"
           name
-        when "find"
-          find
         when "locations"
-          location.find_by_number(zipcode)
-        when 
+          get_locations(location)
         when "menu" 
-          menu
+          show_menu
+        when "next"
+          what_next
         when "volunteer"
           volunteer
-       when "quite"
-          exit
+       when "exit"
+          goodbye
         end
       end
     end
-     
-    def name
-      @name GreenDining::Scraper.jbj_soul_kitchen_scraper
-      green_dining[green_dining_info{:name}]
-    end
 
-    def find(array)
-      i = 0
-      while i < array.length
-        yield array [i]
-        i = i + 1
-      end
-     end
-
-     find(["Red Bank", "Toms River"]) do |location|
-      if location[0]
-        puts "Red Bank #{location}"
-      if location[1]
-        puts "Toms River #{location}"
-      else 
-        puts "Green Dining is not in that location yet. Email to green_dining@yahoo for updates"
-      end
+    def get_locations(location)
+      puts "Choose green dining location to see more details."
+     input = gets.strip
+     location.green_dining.each.with_index(1) do |location, i|
+      puts "#{i}. #{locations.name}"
+      get_location = chosen_location[input.to_i - 1]
     end
+    get_menu(location)
+   end
 
-    def location.find_by_number(zipcode)
-      self.all.detect {|zipcode| zipcode.number == number}
-    end
-
-    def menu
-      input = nil
-      while input != "exit"
-        input = gets.strip
-        if input.downcase == "red bank menu"
-          puts "red bank menu"
-        elseif input == "toms river menu"
-        puts "toms river menu"
-      end
-    end
-
-    def volunteer
-      @volunteer << volunteer
-      @volunteer.collect{|volunteer| volunteer == green_dining.volunteer}
-    end
-            
-    def exit
-      puts "Goodbye!"  
-      exit
+  def get_menu(location)
+    chosen_location = gets.strip.to_i
+    show_menu(input) if valid_input(chosen_location, @location)
+    show_menu(input)
+  end 
+  
+  def valid_input(input, data)
+    input.to_i <= data.length && input.to_i > 0
   end 
 
+  def show_menu(input)
+     input = gets.strip
+       if input == "Red Bank"
+     chosen_location_menu = GreenDining::Scraper.jbj_soul_kitchen_scraper
+     chosen_location_menu.collect do |menu_red_bank|
+     puts "#{menu_red_bank}"
+     end
+     elsif input == "Toms River"
+     
+     chosen_location_menu = GreenDining::Scraper.jbj_soul_kitchen_scraper
+     chosen_location_menu.collect do |menu_toms_river|
+     puts "#{menu_toms_river}"
     end
+     else
+     what_next
+     
+    end
+  end
+
+
+     def what_next
+      puts "Are you done? Type 'exit' to exit or hit any key to volunteer."
+      @input = gets.strip
+    end 
+  
+    def goodbye
+      puts "Enjoy Green Dining!"
+    end 
+  end 
+
+     
+    
+     
+  
+  
+  
+  
+  
+  
+  
+  

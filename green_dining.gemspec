@@ -36,7 +36,7 @@ end
   spec.add_development_dependency('rdoc')
   spec.add_development_dependency('aruba')
   spec.add_development_dependency('cucumber')
-  spec.add_development_dependency('rake')
+  #spec.add_development_dependency('rake')
   spec.add_dependency('methadone', '~> 1.9.2')
   spec.add_development_dependency('test-unit')
   spec.add_development_dependency "pry"

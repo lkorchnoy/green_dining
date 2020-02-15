@@ -1,24 +1,29 @@
 class GreenDining::GreenDining
- 
- attr_accessor :menu, :location, :zip_code, :volunteer
- attr_reader :name  
- 
-   # @@all = []
 
-    def initialize(name, menu, location, zip_code, volunteer)
-        @name = name
-        @menu = []
-        @location = location
-        @zip_code = zip_code
-        @volunteer = []
+  
+    attr_accessor :name, :menu, :location, :zip_code, :volunteer
+    
+    @@all = []
+     
+    def initialize(name)
+      @name = name
+      @menu = menu
+      @location = location
+      @zip_code = zip_code
+      @volunteer = volunteer
+      save
+    end 
+
+    def self.all 
+      @@all 
     end
 
-    
-
-    #green_dining_event = GreenDining::Scraper
+    def get_details
+      GreenDining::Scraper.jbj_soul_kitchen_scraper
+    end 
 
     def name
-      @name GreenDining::Scraper.jbj_soul_kitchen_scraper
+      @name = GreenDining::Scraper.jbj_soul_kitchen_scraper
       green_dining[green_dining_info{:name}]
     end
 
@@ -29,16 +34,37 @@ class GreenDining::GreenDining
 
     def volunteer
       @volunteer << volunteer
-      @volunteer.collect{|volunteer| volunteer == green_dining_event.volunteer}
+      @volunteer.collect{|volunteer| volunteer == green_dining.volunteer}
     end
 
-    def location.find_by_number(zipcode)
+    def self.find_by_number(zipcode)
       self.all.detect {|zipcode| zipcode.number == number}
     end
 
-    
+    def save
+      @@all << self
     end
+  end 
 
+
+    
+  
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+      
+      
+      
+      
+     
 
         
 
