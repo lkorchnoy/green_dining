@@ -32,7 +32,8 @@ class GreenDining::GreenDiningController
           puts "would you like the menu?"
           #when user select 1, then you should call Scraper.scrape_menu
         when "menu" 
-          show_menu
+          puts GreenDining::Scraper.scrape_redmenu
+          puts GreenDining::Scraper.scrape_tomsmenu
         when "next"
           what_next
         when "volunteer"
@@ -43,59 +44,69 @@ class GreenDining::GreenDiningController
       end
     end
 
-    def get_locations(location)
-      puts "Choose green dining location to see more details."
+    def get_location
      input = gets.strip
-     location.green_dining.each.with_index(1) do |location, i|
-      puts "#{i}. #{locations.name}" 
-      GreenDining::Scraper.name_scraper
-      get_location = chosen_location[input.to_i - 1]
+     location.each.with_index(1) do |location, i|
+     puts "#{i}. #{locations.name}" 
+     location = chosen_location[input.to_i - 1]
       binding.pry
+     end
     end
-    get_menu(location)
+    get_user_location
+    end
+    
+    
+   def get_user_location
+    puts "Choose location to see more details"
+    chosen_location = gets.strip.to_i
+    show_location_for(location) if valid_input(chosen_location)
    end
 
-  def get_menu(location)
-    chosen_location = gets.strip.to_i
-    show_menu(input) if valid_input(chosen_location, @location)
-    show_menu(input)
-  end 
-  
-  def valid_input(input, data)
+   def valid_input(input, data)
     input.to_i <= data.length && input.to_i > 0
   end 
 
-  def show_menu(input)
-     input = gets.strip
-       if input == "Red Bank"
-        puts "You chose Red Bank's menu. Great selection."
-        GreenDining::Scraper.scrape_redmenu
-     chosen_location_menu = GreenDining::Scraper.jbj_soul_kitchen_scraper
-     chosen_location_menu.collect do |menu_red_bank|
-     puts "#{menu_red_bank}"
-     end
-     elsif input == "Toms River"
-     
-     chosen_location_menu = GreenDining::Scraper.jbj_soul_kitchen_scraper
-     chosen_location_menu.collect do |menu_toms_river|
-     puts "#{menu_toms_river}"
-    end
-     else
-     what_next
-     
-    end
+
+   def show_location_for(location)
+    puts "You have selected #{location}. Great choice!"
+   end
+   choice
+   end
+   
+   def choice
+    input = nil 
+    puts "Enter a number"
+    input = gets.strip.to_i
+    numbers.detect {|n| n === "input"}
+   end
+  end
+    get_menu
   end
 
+  def get_menu
+    get_menu.each do {|menu| menu == location.menu}
+      puts "#{menu} for chosen location" 
+  end
+  end
+  show_menu
+  end
 
-     def what_next
+  def show_menu
+    puts "You have selected menu at this location. Great choice!"
+  end
+  what_next
+  end
+  
+   def what_next
       puts "Are you done? Type 'exit' to exit or hit any key to volunteer."
       @input = gets.strip
     end 
   
     def goodbye
       puts "Enjoy Green Dining!"
-    end 
-  end 
+    end
+
+  
 
      
     

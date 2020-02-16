@@ -20,19 +20,11 @@ require 'pry'
     end
       
      def self.scrape_redmenu
-    
-      @@red_menu_doc.search()
+      @@red_menu_doc.search("div.entry-content").text.strip
      end
 
     def self.scrape_tomsmenu
-      page_url = 'https://jbjsoulkitchen.org/toms-river-menu/'
-      @info_url = 'http://'
-      doc = Nokogiri::HTML(open("https://jbjsoulkitchen.org/toms-river-menu/"))
-      @tomsmenu_arr = []
-      doc.css('ul li').each do |menu|
-        @tomsmenu_arr << menu.text
-        @tomsmenu_menus = @tomsmenu_arr[]
-      end
+      @@red_menu_doc.search("div.entry-content").text.strip
     end
 end
 
