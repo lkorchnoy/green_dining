@@ -1,7 +1,7 @@
 class GreenDining::GreenDining
 
   
-    attr_accessor :name, :menu, :location, :zip_code, :volunteer
+    attr_accessor :name, :menu, :location, :volunteer
     
     @@all = []
      
@@ -9,14 +9,20 @@ class GreenDining::GreenDining
       @name = name
       @menu = menu
       @location = location
-      @zip_code = zip_code
       @volunteer = volunteer
       save
     end 
+    
 
     def self.all 
       @@all 
     end
+
+    
+
+    
+
+   
 
     def get_details
       GreenDining::Scraper.jbj_soul_kitchen_scraper
@@ -41,9 +47,7 @@ class GreenDining::GreenDining
       self.all.detect {|zipcode| zipcode.number == number}
     end
 
-    def save
-      @@all << self
-    end
+   
   end 
 
 

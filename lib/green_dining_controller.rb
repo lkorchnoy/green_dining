@@ -6,7 +6,7 @@ class GreenDining::GreenDiningController
          while input != "exit"
          puts "Welcome to the Green Dining App!"
 
-        puts "To find green dining by name, please enter 'name'."
+       # puts "To find green dining by name, please enter 'name'."
         puts "To find green dining locations, please enter 'locations'."
         puts "To find out the menu, please enter 'menu'."
         puts "To discover green news and opportunities, please enter 'next'."
@@ -19,9 +19,18 @@ class GreenDining::GreenDiningController
 
         case input
         when "name"
-          name
+          puts "Welcome to JBJ Soul Kitchen Red Bank location"
+          puts "Welcome to JBJ Soul Kitchen Toms River location"
+          puts "Please choose the location"
+        when "1" 
+          puts "Great choice. Welcome to Red Bank Green Dining"
+        when "2"
+          puts "Great choice. Welcome to Toms River Green Dining"
         when "locations"
-          get_locations(location)
+          puts GreenDining::Scraper.scrape_redbank_location
+          puts GreenDining::Scraper.scrape_tomsriver_location
+          puts "would you like the menu?"
+          #when user select 1, then you should call Scraper.scrape_menu
         when "menu" 
           show_menu
         when "next"
@@ -38,8 +47,10 @@ class GreenDining::GreenDiningController
       puts "Choose green dining location to see more details."
      input = gets.strip
      location.green_dining.each.with_index(1) do |location, i|
-      puts "#{i}. #{locations.name}"
+      puts "#{i}. #{locations.name}" 
+      GreenDining::Scraper.name_scraper
       get_location = chosen_location[input.to_i - 1]
+      binding.pry
     end
     get_menu(location)
    end
@@ -57,6 +68,8 @@ class GreenDining::GreenDiningController
   def show_menu(input)
      input = gets.strip
        if input == "Red Bank"
+        puts "You chose Red Bank's menu. Great selection."
+        GreenDining::Scraper.scrape_redmenu
      chosen_location_menu = GreenDining::Scraper.jbj_soul_kitchen_scraper
      chosen_location_menu.collect do |menu_red_bank|
      puts "#{menu_red_bank}"
