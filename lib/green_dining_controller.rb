@@ -6,7 +6,8 @@ class GreenDining::GreenDiningController
          while input != "exit"
          puts "Welcome to the Green Dining App!"
 
-       # puts "To find green dining by name, please enter 'name'."
+        puts "To find green dining by name, please enter 'name'."
+        puts "To select, please enter 'choice'."
         puts "To find green dining locations, please enter 'locations'."
         puts "To find out the menu, please enter 'menu'."
         puts "To discover green news and opportunities, please enter 'next'."
@@ -21,11 +22,13 @@ class GreenDining::GreenDiningController
         when "name"
           puts "Welcome to JBJ Soul Kitchen Red Bank location"
           puts "Welcome to JBJ Soul Kitchen Toms River location"
-          puts "Please choose the location"
-        when "1" 
-          puts "Great choice. Welcome to Red Bank Green Dining"
-        when "2"
-          puts "Great choice. Welcome to Toms River Green Dining"
+          puts "Please select one"
+        when "choice"
+          choice
+        #when "1" 
+         # puts "Great choice. Welcome to Red Bank Green Dining"
+         #when "2"
+         # puts "Great choice. Welcome to Toms River Green Dining"
         when "locations"
           puts GreenDining::Scraper.scrape_redbank_location
           puts GreenDining::Scraper.scrape_tomsriver_location
@@ -43,6 +46,24 @@ class GreenDining::GreenDiningController
         end
       end
     end
+
+    
+      def choice
+        while input != "exit"
+        puts "Enter a number"
+        when "1"
+        input = gets.strip.to_i
+        numbers.each {|n| n === "input"}
+        puts "#{n}. Great choice. Welcome to Red Bank Green Dining"
+        when "2"
+        puts "Great choice. Welcome to Toms River Green Dining"
+       end
+      end
+        get_location
+      end
+
+
+
 
     def get_location
      input = gets.strip
@@ -73,17 +94,7 @@ class GreenDining::GreenDiningController
    choice
    end
    
-   def choice
-    input = nil 
-    puts "Enter a number"
-    input = gets.strip.to_i
-    numbers.detect {|n| n === "input"}
-   end
-  end
-    get_menu
-  end
-
-  def get_menu
+   def get_menu
     get_menu.each do {|menu| menu == location.menu}
       puts "#{menu} for chosen location" 
   end
