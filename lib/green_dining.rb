@@ -1,25 +1,19 @@
 class GreenDining::GreenDining
 
   
-    attr_accessor :name, :menu, :location, :volunteer
+    attr_accessor :location, :menu
     
     @@all = []
      
-    def initialize(name)
-      @name = name
-      @menu = menu
+    def initialize(location, menu)
       @location = location
-      @volunteer = volunteer
-      save
+      @menu = menu
+      @@all << self
     end 
 
 
     def self.all 
       @@all 
-    end
-    
-    def save
-      @@all << save
     end
 
   end
