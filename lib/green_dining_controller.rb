@@ -1,21 +1,39 @@
 class GreenDining::GreenDiningController
 
        def call
-        menu
+        main_menu
         user_input
-       end
+        what_next
+      end
 
-        def menu
+        def main_menu
         puts "Welcome to the Green Dining App! Discover community dining and food sharing experience."
         puts "Share food Not waste food"
         puts "Here are the 2 locations."
         puts "1. JBJ Soul Kitchen Red Bank location"
         puts "2. JBJ Soul Kitchen Toms River location"
         puts "To select, please enter '1' or '2'."
+        puts "To go back to the main menu, enter 'menu'."
         puts "To exit, please type 'exit'."
+           
         puts "What would you like to do?"
           user_input
         end
+
+        def return_home
+          puts "To exit the app, enter 'exit'."
+          puts "To return to the main menu, enter 'menu'."
+          input = gets.strip.downcase
+          if @input == 'exit'
+            goodbye
+          elsif @input == 'menu'
+            main_menu
+          else 
+            puts "Try again"
+            return_home
+          
+        end
+      end
 
         def user_input
           @input = gets.strip.to_i
@@ -29,12 +47,19 @@ class GreenDining::GreenDiningController
             puts "Would you like to see the menu for the current location?"
             
             puts "Type 'y' to see the menu"
-            input = gets.strip
+            input = gets.strip.downcase
               if input == 'y'
-            puts @redbank.menu
-            else
-              menu
-            end
+              puts @redbank.menu
+               return_home
+              #elsif input == 'menu'
+               # self.main_menu
+              #elsif input == 'exit'
+            #self.goodbye
+          else 
+            puts "Invalid input, please try again"
+          main_menu
+
+          end
 
           elsif @input == 2
             puts "Great choice. Welcome to Toms River Dining"
@@ -49,32 +74,30 @@ class GreenDining::GreenDiningController
             input = gets.strip
               if input == 'y'
             puts @tomsriver.menu
-              else
-              menu
-              end
-
-          elsif @input == 3
-            puts "try again"
-          else 
-          menu
+            return_home
+            #elsif input == 'menu'
+            #self.main_menu
+            #elsif input == 'exit'
+             #   self.goodbye
+            else 
+              puts "Invalid input, please try again"
+            main_menu
+            end
           end
         end
       
 
 
-         
-        def what_next
+         def what_next
+          @input = gets.strip.downcase
           puts "Are you done? Type 'exit' to exit"
-          @input = gets.strip
+          puts "To return to the main menu, enter 'menu'."
+          main_menu
         end 
-
         
         
-        def valid_input(input, data)
-          input.to_i <= data.length && input.to_i > 0
-        end 
-
         def goodbye
           puts "Enjoy Green Dining!"
+          exit
         end
       end   

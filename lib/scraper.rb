@@ -12,7 +12,6 @@ require 'pry'
     @@toms_menu_doc = Nokogiri::HTML(open('https://jbjsoulkitchen.org/toms-river-menu/'))
 
     def self.scrape_redbank_location
-      #@redbank_arr = []
       @@doc.search("div.et_pb_blurb_description")[3].children[1].children.text
 
     end
