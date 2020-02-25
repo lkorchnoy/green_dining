@@ -1,6 +1,7 @@
 require_relative "./version"
 require 'pry'
 require 'nokogiri'
+require 'open-uri'
 require_relative './green_dining_controller.rb'
 require_relative './green_dining.rb'
 require_relative './scraper.rb'
