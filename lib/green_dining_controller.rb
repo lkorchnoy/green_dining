@@ -1,3 +1,5 @@
+     require 'pry'
+
 class GreenDining::GreenDiningController
 
        def call
@@ -38,7 +40,7 @@ class GreenDining::GreenDiningController
         def user_input
             @input = nil
             while @input != 'exit'
-            @input = gets.strip.to_i
+            #@input = gets.strip.downcase
             user_input_one
             user_input_two
             
@@ -46,59 +48,70 @@ class GreenDining::GreenDiningController
         end
 
          def user_input_one
-              if @input == 1  
+              @input = gets.strip
+              if @input.to_i == 1
+              
               puts "Great choice. Welcome to Red Bank Green Dining"
               @current_location = GreenDining::Scraper.scrape_redbank_location
               @current_menu = GreenDining::Scraper.scrape_redbank_menu
               @redbank = GreenDining::GreenDining.new(@current_location, @current_menu)
               puts @redbank.location
              
-
-            puts "Would you like to see the menu for the current location?"
-            puts "Type 'y' to see the menu"
-            @input = gets.strip.downcase
-            if @input == 'y'
-                puts @redbank.menu
-                return_home
-                elsif @input == 'menu'
-                main_menu
-                elsif @input == 'exit'
-                goodbye
-                else 
+              puts "Would you like to see the menu for the current location?"
+              puts "Type 'y' to see the menu"
+              @input = gets.strip.downcase
+              if @input == 'y'
+              puts @redbank.menu
+               return_home
+              #@input = gets.strip.downcase
+              #elsif @input == 'menu'
+                #main_menu
+              #elsif @input == 'exit'
+                #goodbye
+              else 
              puts "Invalid input, please try again"
-             main_menu
+               main_menu
              end
+             @input = gets.strip.downcase
+             elsif @input == 'exit'
+              goodbye
             end
-        end
-        
-         def user_input_two
-            if @input == 2 
+            end
+             
+            
+            def user_input_two
+            @input = gets.strip
+            if @input.to_i == 2 
             puts "Great choice. Welcome to Toms River Dining"
             @current_location = GreenDining::Scraper.scrape_tomsriver_location
             @current_menu = GreenDining::Scraper.scrape_tomsriver_menu
             @tomsriver = GreenDining::GreenDining.new(@current_location, @current_menu)
             puts @tomsriver.location
            
-            
             puts "Would you like to see the menu for the current location?"
             puts "Type 'y' to see the menu"
             @input = gets.strip.downcase
               if @input == 'y'
                   puts @tomsriver.menu
                   return_home
-                  elsif @input == 'menu'
-                  main_menu
-                  elsif @input == 'exit'
-                    goodbye
+                  #@input = gets.strip.downcase
+                  #elsif @input == 'menu'
+                  #main_menu
+                  #elsif @input == 'exit'
+                    #goodbye
                   else 
-              puts "Invalid input, please try again"
-            main_menu
+            puts "Invalid input, please try again"
+             main_menu
+             end
+             @input = gets.strip.downcase
+             elsif @input == 'exit'
+              goodbye
             end
-          end
         end
-      
 
-         def what_next
+
+            
+          def what_next
           @input = gets.strip.downcase
           puts "Are you done? Type 'exit' to exit"
           puts "To return to the main menu, enter 'menu'."
