@@ -1,13 +1,14 @@
 class GreenDining::GreenDining
 
   
-    attr_accessor :location_one, :location_two, :menu
+    attr_accessor :name, :location, :url, :menu
     
     @@all = []
      
-    def initialize(location_one, location_two)
-      @location_one = location_one
-      @location_two = location_two
+    def initialize(name, location, url)
+      @name = name
+      @location = location
+      @url = url
       @@all << self
     end 
 
