@@ -41,6 +41,95 @@ run 'git push origin master' to actually send the code
 #green_dining_event_method
 
         
-    
+    #     def user_input_one
+      #     input = gets.strip
+      #    if input.to_i == 1
+      #       puts "Great choice. Welcome to Red Bank Green Dining"
+      #      # @current_location
+      #       @current_menu = GreenDining::Scraper.scrape_redbank_menu
+      #       #@redbank = GreenDining::GreenDining.new(@current_location, @current_menu)
+      #       puts @redbank.location
+             
+      #       puts "Would you like to see the menu for the current location?"
+      #       puts "Type 'y' to see the menu"
+      #       input = gets.strip.downcase
+      #     if input == 'y'
+      #       puts @redbank.menu
+      #         return_home
+      #     else 
+      #       puts "Invalid input, please try again"
+      #         main_menu
+      #        end
+             
+      #     elsif input == 'menu'
+      #        main_menu
+      #     elsif input == 'exit'
+      #       goodbye
+      #      end
+      #      user_input_two
+      #   end
+      # end
+
+        # def user_input_two
+        #   input = gets.strip
+        #   if input.to_i == 2 
+        #     puts "Great choice. Welcome to Toms River Dining"
+        #     #@current_location = GreenDining::Scraper.scrape_tomsriver_location
+        #     @current_menu = GreenDining::Scraper.scrape_tomsriver_menu
+        #     #@tomsriver = GreenDining::GreenDining.new(@current_location, @current_menu)
+        #     puts @tomsriver.location
+           
+        #     puts "Would you like to see the menu for the current location?"
+        #     puts "Type 'y' to see the menu"
+        #    input = gets.strip.downcase
+        #   if input == 'y'
+        #     puts @tomsriver.menu
+        #      return_home
+        #   else 
+        #     puts "Invalid input, please try again"
+        #      main_menu
+        #      end
+             
+        #   elsif input == 'menu'
+        #     main_menu
+        #   elsif input == 'exit'
+        #     goodbye
+        #     end
+        #   end
+        
+
+        #  def self.scrape_locations
+    #   locations = []
+ 
+    #    locations << self.scrape_redbank_location
+    #    locations << self.scrape_tomsriver_location
+ 
+    #    locations
+    # end
+  
+      
+ 
+    #  def self.scrape_redbank_location
+    #   doc = Nokogiri::HTML(open("https://jbjsoulkitchen.org"))
+ 
+    #   location = self.new
+    #   location.url = doc.search("div.et_pb_blurb_description")[3].children[1].children.text
+    #   location.menu = doc.search("div.entry-content").text.delete("\n,\t").strip)
+    #   location
+    #  end
+ 
+    #  def self.scrape_tomsriver_location
+    #   doc = Nokogiri::HTML(open("https://jbjsoulkitchen.org"))
+ 
+    #   location = self.new
+    #   location.url = doc.search("div.et_pb_blurb_description")[7].children[1].children.text
+    #   location.menu = doc.search("div.et_pb_column").text.delete("\n,\t").strip)
+    #   location
+    # end
+  
+
+
+            
+        
 
 

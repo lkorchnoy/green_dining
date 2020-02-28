@@ -1,102 +1,71 @@
     class GreenDining::GreenDiningController
 
-      
+      attr_accessor :menu, :current_location
 
        def call
-          main_menu
-          user_input_one
+          GreenDining::Scraper.get_locations
+          welcome
+          list_locations
+          user_input
+          return_home
+          goodbye
        end
 
-       def main_menu
+       def welcome
           puts "Welcome to the Green Dining App! Discover community dining and food sharing experience."
           puts "Share food Not waste food"
-          puts "Here are the 2 locations."
-          puts "1. JBJ Soul Kitchen Red Bank location"
-          puts "2. JBJ Soul Kitchen Toms River location"
-          puts "To select, please enter '1' or '2'."
-          puts "To go back to the main menu, enter 'menu'."
-          puts "To exit, please type 'exit'."
-                
-          puts "What would you like to do?"
-          
-        end
-
-       def return_home
-           puts "To exit the app, enter 'exit'."
-           puts "To return to the main menu, enter 'menu'."
-           input = gets.strip.downcase
-         if input == 'exit'
-            goodbye
-         elsif input == 'menu'
-            main_menu
-         else 
-           puts "Try again"
-            return_home
-          
-         end
         end
 
         
+        def list_locations
+          
+          puts "Today's Green Dining locations:"
+          GreenDining::GreenDining.all.each.with_index(1) do |location, i|
+            puts "#{i}. #{location.location_one}"
+            puts "#{i + 1}. #{location.location_two}"
+           
+          end
+        end
 
-        def user_input_one
+        
+        def user_input
           input = nil
           while input != 'exit'
-          input = gets.strip
-         if input.to_i == 1
-            puts "Great choice. Welcome to Red Bank Green Dining"
-            @current_location = GreenDining::Scraper.scrape_redbank_location
-            @current_menu = GreenDining::Scraper.scrape_redbank_menu
-            @redbank = GreenDining::GreenDining.new(@current_location, @current_menu)
-            puts @redbank.location
-             
-            puts "Would you like to see the menu for the current location?"
-            puts "Type 'y' to see the menu"
+            puts "Enter the number of the location (1 or 2) you'd like more info on or type list to see the locations again or type exit:"
             input = gets.strip.downcase
-          if input == 'y'
-            puts @redbank.menu
-              return_home
-          else 
-            puts "Invalid input, please try again"
-              main_menu
-             end
+     
+             if input.to_i > 0
+        
              
-          elsif input == 'menu'
-             main_menu
-          elsif input == 'exit'
-            goodbye
-           end
-           user_input_two
-          end
-        end
-            
-        def user_input_two
-          input = gets.strip
-          if input.to_i == 2 
-            puts "Great choice. Welcome to Toms River Dining"
-            @current_location = GreenDining::Scraper.scrape_tomsriver_location
-            @current_menu = GreenDining::Scraper.scrape_tomsriver_menu
-            @tomsriver = GreenDining::GreenDining.new(@current_location, @current_menu)
-            puts @tomsriver.location
-           
-            puts "Would you like to see the menu for the current location?"
-            puts "Type 'y' to see the menu"
-           input = gets.strip.downcase
-          if input == 'y'
-            puts @tomsriver.menu
-             return_home
-          else 
-            puts "Invalid input, please try again"
-             main_menu
-             end
-             
-          elsif input == 'menu'
-            main_menu
-          elsif input == 'exit'
-            goodbye
+              self.current_location = GreenDining::GreenDining.find(input)
+             elsif input == 'menu'
+              GreenDining::Scraper.get_menu.each do |menu| 
+                  GreenDining::GreenDining.all << menu
+                  puts "#{current_location.location_one} - #{current_location.menu}"
+              end
+            elsif input == 'list'
+              list_locations
+            else
+              puts "Not sure what you want, type list or exit."
             end
           end
-        
+        end
 
+        def return_home
+          puts "To exit the app, enter 'exit'."
+          puts "To return to the main menu, enter 'menu'."
+          input = gets.strip.downcase
+        if input == 'exit'
+           goodbye
+        elsif input == 'menu'
+           main_menu
+        else 
+          puts "Try again"
+           return_home
+         
+        end
+       end
+       
             
         def goodbye
           puts "Enjoy Green Dining!"
@@ -104,3 +73,6 @@
         end
 
        end   
+
+
+      
